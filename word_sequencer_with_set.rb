@@ -30,11 +30,12 @@ class WordSequencerWithSet
       letters = word.split(//)
       letters.each_cons(4) do |seq|
         seq = seq.join
-        next if seq.scan(/[!@#$%^&*()_+{}\[\]:;'"\/\\?><.,0-9]/).empty?
-        if !words.add?(seq)
-          to_remove.add(seq)
+        if seq.scan(/[!@#$%^&*()_+{}\[\]:;'"\/\\?><.,0-9]/).empty?
+          if !words.add?(seq)
+            to_remove.add(seq)
+          end
+          sequences.add( {seq: seq, word: word} )
         end
-        sequences.add( {seq: seq, word: word} )
       end
     end
     sequences.delete_if { |hash| to_remove.include?(hash[:seq]) }
