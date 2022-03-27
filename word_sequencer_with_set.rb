@@ -1,4 +1,4 @@
-class WordSequencer
+class WordSequencerWithSet
   attr_accessor :dictionary_path, :output_directory, :dictionary
  
   def initialize(dictionary_path, output_directory)
